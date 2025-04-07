@@ -84,30 +84,15 @@ Planned features for future versions:
 - Birth chart visualization
 - More accurate astronomical calculations
 
-## 🤝 Contributing
 
-Contributions are welcome! If you'd like to improve this project:
-
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Commit your changes (`git commit -m 'Add some amazing feature'`)
-5. Push to the branch (`git push origin feature/amazing-feature`)
-6. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🙏 Acknowledgements
 
 - Astronomical calculation principles from the Astropy Python library
 - Zodiac sign imagery adapted for web use
 
-## 📞 Contact
 
-If you have any questions or suggestions, please open an issue in this repository or contact me through GitHub.
 
 ---
 
-Created with ❤️ by [Your Name]
+Created with ❤️ by ashanjayamal
