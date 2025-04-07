@@ -87,10 +87,12 @@
         }
         #zodiacImage {
             display: block;
-            width: 120px;
-            height: 120px;
+            width: 200px;
+            height: 200px;
             margin: 20px auto;
             filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+            border-radius: 50%;
+            object-fit: cover;
         }
         .footer {
             margin-top: 40px;
@@ -187,7 +189,7 @@
         <img id="zodiacImage" src="" alt="Zodiac Sign" style="display:none;">
         
         <div class="footer">
-            <p>Created using astrology calculation principles | <a href="https://github.com/yourusername/rising-sign-calculator" target="_blank">View on GitHub</a></p>
+            <p>Created using astrology calculation principles | <a href="https://github.com/ashanjayamal/rising-sign-calculator" target="_blank">View on GitHub</a></p>
         </div>
     </div>
 
@@ -285,9 +287,8 @@
         }
         
         function getZodiacImagePath(sign) {
-            // This would be replaced with actual image paths for each sign
-            // For this demo, we'll use placeholder images
-            return `/api/placeholder/120/120?text=${sign}`;
+            // Using the custom images you've uploaded to your GitHub repository
+            return `https://raw.githubusercontent.com/ashanjayamal/rising-sign-calculator/main/images/${sign}.jpg`;
         }
         
         // Pre-fill form with example data
