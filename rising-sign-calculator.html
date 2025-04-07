@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rising Sign Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+            color: #ffcc80;
+            margin-bottom: 10px;
+        }
+        p.intro {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #cfd8dc;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #80deea;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #FF9A8B, #FF6B95);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 149, 0.4);
+        }
+        #result {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            min-height: 30px;
+            color: #ffcc80;
+            font-weight: bold;
+            display: none;
+        }
+        #zodiacImage {
+            display: block;
+            width: 120px;
+            height: 120px;
+            margin: 20px auto;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #b0bec5;
+        }
+        .footer a {
+            color: #80deea;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rising Sign Calculator</h1>
+        <p class="intro">Discover your Ascendant (Rising Sign) - the zodiac sign that was rising on the eastern horizon at the time of your birth. This sign influences your outward style and how others perceive you.</p>
+        
+        <form id="risingSignForm">
+            <div class="form-group">
+                <label for="birthDate">Birth Date:</label>
+                <input type="date" id="birthDate" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="birthTime">Birth Time (24-hour format):</label>
+                <input type="time" id="birthTime" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="latitude">Latitude:</label>
+                <input type="number" id="latitude" step="0.0001" placeholder="e.g. 6.9271 for Colombo" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="longitude">Longitude:</label>
+                <input type="number" id="longitude" step="0.0001" placeholder="e.g. 79.8612 for Colombo" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="timezone">Timezone:</label>
+                <select id="timezone" required>
+                    <option value="Africa/Abidjan">Africa/Abidjan</option>
+                    <option value="Africa/Accra">Africa/Accra</option>
+                    <option value="Africa/Cairo">Africa/Cairo</option>
+                    <option value="Africa/Johannesburg">Africa/Johannesburg</option>
+                    <option value="Africa/Lagos">Africa/Lagos</option>
+                    <option value="America/Chicago">America/Chicago</option>
+                    <option value="America/Denver">America/Denver</option>
+                    <option value="America/Los_Angeles">America/Los_Angeles</option>
+                    <option value="America/Mexico_City">America/Mexico_City</option>
+                    <option value="America/New_York">America/New_York</option>
+                    <option value="America/Sao_Paulo">America/Sao_Paulo</option>
+                    <option value="America/Toronto">America/Toronto</option>
+                    <option value="Asia/Bangkok">Asia/Bangkok</option>
+                    <option value="Asia/Colombo">Asia/Colombo</option>
+                    <option value="Asia/Dubai">Asia/Dubai</option>
+                    <option value="Asia/Hong_Kong">Asia/Hong_Kong</option>
+                    <option value="Asia/Jerusalem">Asia/Jerusalem</option>
+                    <option value="Asia/Kolkata">Asia/Kolkata</option>
+                    <option value="Asia/Seoul">Asia/Seoul</option>
+                    <option value="Asia/Shanghai">Asia/Shanghai</option>
+                    <option value="Asia/Singapore">Asia/Singapore</option>
+                    <option value="Asia/Tokyo">Asia/Tokyo</option>
+                    <option value="Australia/Melbourne">Australia/Melbourne</option>
+                    <option value="Australia/Sydney">Australia/Sydney</option>
+                    <option value="Europe/Amsterdam">Europe/Amsterdam</option>
+                    <option value="Europe/Berlin">Europe/Berlin</option>
+                    <option value="Europe/London">Europe/London</option>
+                    <option value="Europe/Moscow">Europe/Moscow</option>
+                    <option value="Europe/Paris">Europe/Paris</option>
+                    <option value="Europe/Rome">Europe/Rome</option>
+                    <option value="Pacific/Auckland">Pacific/Auckland</option>
+                    <option value="Pacific/Honolulu">Pacific/Honolulu</option>
+                    <option value="UTC">UTC</option>
+                </select>
+            </div>
+            
+            <button type="button" onclick="calculateRisingSign()">Calculate Rising Sign</button>
+        </form>
+        
+        <div id="result"></div>
+        <img id="zodiacImage" src="" alt="Zodiac Sign" style="display:none;">
+        
+        <div class="footer">
+            <p>Created using astrology calculation principles | <a href="https://github.com/yourusername/rising-sign-calculator" target="_blank">View on GitHub</a></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateRisingSign() {
+            // Get user inputs
+            const birthDate = document.getElementById('birthDate').value;
+            const birthTime = document.getElementById('birthTime').value;
+            const latitude = parseFloat(document.getElementById('latitude').value);
+            const longitude = parseFloat(document.getElementById('longitude').value);
+            const timezone = document.getElementById('timezone').value;
+            
+            // Form validation
+            if (!birthDate || !birthTime || isNaN(latitude) || isNaN(longitude) || !timezone) {
+                alert("Please fill in all fields correctly.");
+                return;
+            }
+            
+            // Function to calculate Local Sidereal Time
+            function calculateLST(utcDateTime, longitude) {
+                // J2000 epoch
+                const J2000 = 2451545.0;
+                
+                // Convert UTC time to Julian Date
+                const year = utcDateTime.getUTCFullYear();
+                const month = utcDateTime.getUTCMonth() + 1;
+                const day = utcDateTime.getUTCDate();
+                const hour = utcDateTime.getUTCHours();
+                const minute = utcDateTime.getUTCMinutes();
+                const second = utcDateTime.getUTCSeconds();
+                
+                let y = year;
+                let m = month;
+                if (m <= 2) { m += 12; y -= 1; }
+                
+                const a = Math.floor(y / 100);
+                const b = 2 - a + Math.floor(a / 4);
+                const jd = Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + day + b - 1524.5;
+                
+                // Add time of day
+                const jdWithTime = jd + (hour + minute / 60.0 + second / 3600.0) / 24.0;
+                
+                // Calculate days since J2000 epoch
+                const T = (jdWithTime - J2000) / 36525.0;
+                
+                // Calculate Greenwich Mean Sidereal Time
+                let GMST = 280.46061837 + 360.98564736629 * (jdWithTime - J2000);
+                GMST += 0.000387933 * T * T - (T * T * T) / 38710000.0;
+                GMST = GMST % 360;
+                
+                // Calculate Local Sidereal Time
+                let LST = (GMST + longitude) % 360;
+                if (LST < 0) LST += 360;
+                
+                return LST;
+            }
+            
+            // Parse input datetime
+            const [birthYear, birthMonth, birthDay] = birthDate.split('-').map(Number);
+            const [birthHour, birthMinute] = birthTime.split(':').map(Number);
+            
+            // Create local datetime
+            const localDateTime = new Date(birthYear, birthMonth - 1, birthDay, birthHour, birthMinute);
+            
+            // Convert to UTC
+            // Note: This is a simplification. In a real implementation, we'd need to use a timezone library.
+            // For this demo, we'll just use the browser's timezone capabilities
+            const utcDateTime = new Date(localDateTime);
+            
+            // Calculate Local Sidereal Time (LST)
+            const lst = calculateLST(utcDateTime, longitude);
+            
+            // Calculate Ascendant (Rising Degree)
+            const ascendant = (lst + longitude) % 360;
+            
+            // Determine Zodiac Sign
+            const zodiacSigns = [
+                "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
+                "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+            ];
+            
+            const signIndex = Math.floor(ascendant / 30);
+            const risingSign = zodiacSigns[signIndex];
+            
+            // Display result
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = `Your Rising Sign is ${risingSign}.`;
+            resultElement.style.display = 'block';
+            
+            // Display zodiac image
+            const zodiacImage = document.getElementById('zodiacImage');
+            zodiacImage.src = getZodiacImagePath(risingSign);
+            zodiacImage.alt = risingSign;
+            zodiacImage.style.display = 'block';
+        }
+        
+        function getZodiacImagePath(sign) {
+            // This would be replaced with actual image paths for each sign
+            // For this demo, we'll use placeholder images
+            return `/api/placeholder/120/120?text=${sign}`;
+        }
+        
+        // Pre-fill form with example data
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('birthDate').value = '1995-04-08';
+            document.getElementById('birthTime').value = '15:00';
+            document.getElementById('latitude').value = '6.9271';
+            document.getElementById('longitude').value = '79.8612';
+            document.getElementById('timezone').value = 'Asia/Colombo';
+        });
+    </script>
+</body>
+</html>
